@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.bill.dp.common.factory.PolicySimpleFactory;
+import com.bill.dp.common.factory1.PolicySimpleFactory;
 import com.bill.dp.dto.basic.BaseDtoReq;
 import com.bill.dp.model.basic.BaseWebReq;
 import com.bill.dp.service.basic.IBaseService;
@@ -31,7 +31,7 @@ public class PolicyAddWithSimpleFactoryService implements IBaseService {
 		String insTypeId = httpDataTransferUtil.getTranrqUnderlyingType(baseWebReq, "INS_TYPE_ID", String.class);
 		log.info("insTypeId: {}", insTypeId);
 		
-		//透過Factory取得Policy
+		//透過Simple Factory取得Policy
 		BaseDtoReq req = PolicySimpleFactory.createPolicy(insTypeId, baseWebReq.getTranrq());
 		
 		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(req, "");
