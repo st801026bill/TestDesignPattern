@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bill.dp.model.basic.BaseWebReq;
 import com.bill.dp.service.PolicyAddService;
+import com.bill.dp.service.PolicyAddWithAbsFactoryService;
 import com.bill.dp.service.PolicyAddWithFactoryService;
 import com.bill.dp.service.PolicyAddWithSimpleFactoryService;
 
@@ -17,11 +18,13 @@ import com.bill.dp.service.PolicyAddWithSimpleFactoryService;
 public class DemoController {
 	
 	@Autowired
-	PolicyAddService policyAddService;
+	private PolicyAddService policyAddService;
 	@Autowired
-	PolicyAddWithSimpleFactoryService policyAddWithSimpleFactoryService;
+	private PolicyAddWithSimpleFactoryService policyAddWithSimpleFactoryService;
 	@Autowired
-	PolicyAddWithFactoryService policyAddWithFactoryService;
+	private PolicyAddWithFactoryService policyAddWithFactoryService;
+	@Autowired
+	private PolicyAddWithAbsFactoryService policyAddWithAbsFactoryService;
 	
 	@RequestMapping(value = "/policy/add",
 		method = RequestMethod.POST,
@@ -47,6 +50,12 @@ public class DemoController {
 		return policyAddWithFactoryService.process(baseWebReq);
 	}
 	
-	
+	@RequestMapping(value = "/policy/add/with_abs_factory",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> addPolicyWithAbsFactory(@RequestBody BaseWebReq baseWebReq) {
+		return policyAddWithAbsFactoryService.process(baseWebReq);
+	}
 	
 }

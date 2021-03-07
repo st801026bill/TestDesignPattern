@@ -10,10 +10,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class VehiclePolicyDtoReq implements BaseDtoReq{
+public class TPIVehiclePolicyDtoReq implements BaseDtoReq{
 		
 	@JsonProperty("INS_TYPE_ID")
 	private String insTypeId;
+	
+	@JsonProperty("COMPANY")
+	private String company;
 	
 	@JsonProperty("VEHICLE_POLICY")
 	private VehiclePolicy vehiclePolicy;

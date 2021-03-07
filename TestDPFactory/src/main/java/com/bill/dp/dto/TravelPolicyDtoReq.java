@@ -3,24 +3,33 @@ package com.bill.dp.dto;
 import com.bill.dp.dto.basic.BaseDtoReq;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.ToString;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
-@ToString
-public class TravelPolicyDtoReq extends BaseDtoReq{
-	
-	@JsonProperty("APPLY_NO")
-	private String applyNo;
-	
+@EqualsAndHashCode(callSuper=false)
+public class TravelPolicyDtoReq implements BaseDtoReq{
 	
 	@JsonProperty("INS_TYPE_ID")
 	private String insTypeId;
 	
-	@JsonProperty("NAME")
-	private String name;
+	@JsonProperty("TRAVEL_POLICY")
+	private TravelPolicy travelPolicy;
 	
-	@JsonProperty("TRAVEL_COUNTRY")
-	private String travelCountry;
-	
+	@Data
+	@NoArgsConstructor
+	@AllArgsConstructor
+	public static class TravelPolicy {
+		
+		@JsonProperty("APPLY_NO")
+		private String applyNo;
+		
+		@JsonProperty("NAME")
+		private String name;
+		
+		@JsonProperty("TRAVEL_COUNTRY")
+		private String travelCountry;
+	}
 }

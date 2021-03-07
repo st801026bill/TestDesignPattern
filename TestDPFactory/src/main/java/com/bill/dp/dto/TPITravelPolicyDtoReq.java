@@ -10,18 +10,21 @@ import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class VehiclePolicyDtoReq implements BaseDtoReq{
-		
+public class TPITravelPolicyDtoReq implements BaseDtoReq{
+	
 	@JsonProperty("INS_TYPE_ID")
 	private String insTypeId;
 	
-	@JsonProperty("VEHICLE_POLICY")
-	private VehiclePolicy vehiclePolicy;
+	@JsonProperty("COMPANY")
+	private String company;
+	
+	@JsonProperty("TRAVEL_POLICY")
+	private TravelPolicy travelPolicy;
 	
 	@Data
 	@NoArgsConstructor
 	@AllArgsConstructor
-	public static class VehiclePolicy {
+	public static class TravelPolicy {
 		
 		@JsonProperty("APPLY_NO")
 		private String applyNo;
@@ -29,7 +32,7 @@ public class VehiclePolicyDtoReq implements BaseDtoReq{
 		@JsonProperty("NAME")
 		private String name;
 		
-		@JsonProperty("CAR_ID")
-		private String carId;
+		@JsonProperty("TRAVEL_COUNTRY")
+		private String travelCountry;
 	}
 }

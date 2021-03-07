@@ -37,15 +37,13 @@ public class PolicyAddService implements IBaseService {
 		switch(insTypeId) {
 			case "I01": 
 				req = pojoUtil.transMap2Bean(baseWebReq.getTranrq(), TravelPolicyDtoReq.class);
-				log.info(req.toString());
 				break;
 			case "I02":
 			case "I03":
 				req = pojoUtil.transMap2Bean(baseWebReq.getTranrq(), VehiclePolicyDtoReq.class);
-				log.info(req.toString());
 				break;
 		}
-		
+		log.info(req.toString());
 		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(req, "");
 		
 		return httpDataTransferUtil.boxingResEntity(baseWebReq, resBodyMap, HttpStatus.OK);
