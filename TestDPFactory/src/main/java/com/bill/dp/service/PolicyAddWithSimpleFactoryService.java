@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.bill.dp.common.factory1_1.PolicySimpleFactory;
+import com.bill.dp.common.factory1.PolicySimpleFactory;
 import com.bill.dp.dto.basic.IPolicyDto;
 import com.bill.dp.model.basic.BaseWebReq;
 import com.bill.dp.service.basic.IBaseService;

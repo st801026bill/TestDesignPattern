@@ -1,4 +1,4 @@
-package com.bill.dp.common.factory1_1;
+package com.bill.dp.common.factory1;
 
 import java.util.Map;
 
@@ -8,8 +8,8 @@ import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bill.dp.common.factory1_1.dto.TravelPolicyDtoReq;
-import com.bill.dp.common.factory1_1.dto.VehiclePolicyDtoReq;
+import com.bill.dp.common.factory1.dto.TravelPolicyDtoReq;
+import com.bill.dp.common.factory1.dto.VehiclePolicyDtoReq;
 import com.bill.dp.dto.basic.IPolicyDto;
 import com.bill.dp.util.PojoUtil;
 

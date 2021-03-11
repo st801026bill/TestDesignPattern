@@ -1,4 +1,4 @@
-package com.bill.dp.common.factory1_1.dto;
+package com.bill.dp.dto;
 
 import com.bill.dp.dto.basic.IPolicyDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,11 +15,11 @@ public class VehiclePolicyDtoReq implements IPolicyDto{
 	@JsonProperty("INS_TYPE_ID")
 	private String insTypeId;
 	
-	@JsonProperty("DESCRIPTION")
-	private String description;
-	
 	@JsonProperty("VEHICLE_POLICY")
 	private VehiclePolicy vehiclePolicy;
+	
+	@JsonProperty("DESCRIPTION")
+	private String description;
 	
 	@Data
 	@NoArgsConstructor

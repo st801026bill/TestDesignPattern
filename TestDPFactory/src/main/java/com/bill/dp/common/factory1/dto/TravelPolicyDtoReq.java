@@ -1,4 +1,4 @@
-package com.bill.dp.common.factory1_1.dto;
+package com.bill.dp.common.factory1.dto;
 
 import com.bill.dp.dto.basic.IPolicyDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
