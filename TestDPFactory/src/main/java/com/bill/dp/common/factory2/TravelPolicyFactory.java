@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.bill.dp.common.factory2.dto.TravelPolicyDtoReq;
@@ -14,16 +15,11 @@ import com.bill.dp.util.PojoUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
+@Component
 public class TravelPolicyFactory implements IPolicyFactory {
 	
-	private static PojoUtil pojoUtil;
 	@Autowired
-	private PojoUtil tempPojoUtil;
-	@PostConstruct
-    public void init() {
-		pojoUtil = tempPojoUtil;
-    }
+	private PojoUtil pojoUtil;
 	
 	@Override
 	public IPolicyDto createPolicy(Map<String, ? extends Object> map) {

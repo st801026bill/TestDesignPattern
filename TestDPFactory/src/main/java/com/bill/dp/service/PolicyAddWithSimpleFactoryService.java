@@ -34,6 +34,7 @@ public class PolicyAddWithSimpleFactoryService implements IBaseService {
 		//透過Simple Factory取得Policy
 		IPolicyDto policy = PolicySimpleFactory.createPolicy(insTypeId, baseWebReq.getTranrq());
 		policy.description();
+//		policy.save();	//儲存
 		
 		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(policy, "");
 		

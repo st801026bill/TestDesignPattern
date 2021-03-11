@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.bill.dp.common.factory1.dto.TravelPolicyDtoReq;
@@ -16,7 +17,7 @@ import com.bill.dp.util.PojoUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
+@Component
 public class PolicySimpleFactory {
 	
 	private static PojoUtil pojoUtil;
