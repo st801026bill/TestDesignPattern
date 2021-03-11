@@ -1,6 +1,5 @@
 package com.bill.dp.common.factory1.dto;
 
-import com.bill.dp.dto.basic.IPolicyDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

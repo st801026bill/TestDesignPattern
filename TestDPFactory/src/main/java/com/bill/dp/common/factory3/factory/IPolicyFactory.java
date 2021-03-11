@@ -2,7 +2,7 @@ package com.bill.dp.common.factory3.factory;
 
 import java.util.Map;
 
-import com.bill.dp.dto.basic.IPolicyDto;
+import com.bill.dp.common.factory3.dto.IPolicyDto;
 
 public interface IPolicyFactory {
 	/**	旅遊險保單	**/

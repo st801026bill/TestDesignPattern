@@ -8,10 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.bill.dp.common.factory3.dto.IPolicyDto;
 import com.bill.dp.common.factory3.factory.IPolicyFactory;
-import com.bill.dp.common.factory3.factory.TSBPolicyFactory;
-import com.bill.dp.common.factory3.factory.WWUPolicyFactory;
-import com.bill.dp.dto.basic.IPolicyDto;
+import com.bill.dp.common.factory3.store.PolicyStore;
+import com.bill.dp.common.factory3.store.TSBPolicyStore;
+import com.bill.dp.common.factory3.store.WWUPolicyStore;
 import com.bill.dp.model.basic.BaseWebReq;
 import com.bill.dp.service.basic.IBaseService;
 import com.bill.dp.util.HttpDataTransferUtil;
@@ -29,9 +30,9 @@ public class PolicyAddWithAbsFactoryService implements IBaseService {
 	private HttpDataTransferUtil httpDataTransferUtil;
 	
 	@Autowired
-	private TSBPolicyFactory TSBPolicyFactory;
+	private WWUPolicyStore WWUPolicyStore;
 	@Autowired
-	private WWUPolicyFactory WWUPolicyFactory;
+	private TSBPolicyStore TSBPolicyStore;
 	
 	@Override
 	public ResponseEntity<?> process(BaseWebReq baseWebReq) {
@@ -40,6 +41,7 @@ public class PolicyAddWithAbsFactoryService implements IBaseService {
 		String insTypeId = httpDataTransferUtil.getTranrqUnderlyingType(baseWebReq, "INS_TYPE_ID", String.class);
 		log.info("company: {}, insTypeId: {}", company, insTypeId);
 		
+		/*
 		//透過 COMPANY 取得 對應的 FACTORY (產品族)
 		Map<String, IPolicyFactory> companyFactoryType = new HashedMap<String, IPolicyFactory>(){{
 			put("WWU", WWUPolicyFactory);
@@ -54,6 +56,15 @@ public class PolicyAddWithAbsFactoryService implements IBaseService {
 			put("I03", companyFactory.createVehiclePolicy(baseWebReq.getTranrq()));
 		}};
 		IPolicyDto policy = policyMap.get(insTypeId);
+		*/
+		
+		/* 取得保單商店 */
+		Map<String, PolicyStore> storeType = new HashedMap<String, PolicyStore>(){{
+			put("WWU", WWUPolicyStore);
+			put("TSB", TSBPolicyStore);
+		}};
+		PolicyStore store = storeType.get(company);
+		IPolicyDto policy = store.buyPolicy(insTypeId, baseWebReq);
 		
 		policy.description();
 		log.info("req: {}", policy);

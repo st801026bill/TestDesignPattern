@@ -1,13 +1,14 @@
 package com.bill.dp.common.factory3.dto;
 
-import com.bill.dp.dto.basic.IPolicyDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class WWUVehiclePolicyDtoReq implements IPolicyDto{
@@ -42,5 +43,10 @@ public class WWUVehiclePolicyDtoReq implements IPolicyDto{
 	@Override
 	public String description() {
 		return this.description = "HI~我是旺旺 - 車險保單!!";
+	}
+
+	@Override
+	public void save() {
+		log.info("旺旺 - 車險保單 已新增");
 	}
 }

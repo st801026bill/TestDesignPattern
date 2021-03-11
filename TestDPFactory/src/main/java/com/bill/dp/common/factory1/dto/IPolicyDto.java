@@ -1,6 +1,7 @@
-package com.bill.dp.dto.basic;
+package com.bill.dp.common.factory1.dto;
+
+import com.bill.dp.dto.basic.IBaseDto;
 
 public interface IPolicyDto extends IBaseDto{
 	public abstract String description();
-//	public abstract String save();
 }

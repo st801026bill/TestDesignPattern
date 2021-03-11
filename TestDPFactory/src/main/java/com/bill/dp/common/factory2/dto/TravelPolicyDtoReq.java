@@ -1,13 +1,14 @@
 package com.bill.dp.common.factory2.dto;
 
-import com.bill.dp.dto.basic.IPolicyDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Data
 @EqualsAndHashCode(callSuper=false)
 public class TravelPolicyDtoReq implements IPolicyDto{
@@ -39,5 +40,10 @@ public class TravelPolicyDtoReq implements IPolicyDto{
 	@Override
 	public String description() {
 		return this.description = "HI~我是旅遊險保單!!";
+	}
+
+	@Override
+	public void save() {
+		log.info("旅遊險保單 已新增");
 	}
 }
