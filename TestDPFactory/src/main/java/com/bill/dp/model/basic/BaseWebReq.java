@@ -2,7 +2,7 @@ package com.bill.dp.model.basic;
 
 import java.util.Map;
 
-import com.bill.dp.dto.basic.BaseDtoReq;
+import com.bill.dp.dto.basic.IPolicyDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

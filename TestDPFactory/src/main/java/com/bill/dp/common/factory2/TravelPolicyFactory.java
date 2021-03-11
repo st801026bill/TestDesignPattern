@@ -7,8 +7,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bill.dp.dto.TravelPolicyDtoReq;
-import com.bill.dp.dto.basic.BaseDtoReq;
+import com.bill.dp.common.factory2.dto.TravelPolicyDtoReq;
+import com.bill.dp.dto.basic.IPolicyDto;
 import com.bill.dp.util.PojoUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class TravelPolicyFactory implements IPolicyFactory {
     }
 	
 	@Override
-	public BaseDtoReq createPolicy(Map<String, ? extends Object> map) {
+	public IPolicyDto createPolicy(Map<String, ? extends Object> map) {
 		return pojoUtil.transMap2Bean(map, TravelPolicyDtoReq.class);
 	}
 }

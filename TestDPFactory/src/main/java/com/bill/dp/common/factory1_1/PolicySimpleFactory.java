@@ -1,4 +1,4 @@
-package com.bill.dp.common.factory1;
+package com.bill.dp.common.factory1_1;
 
 import java.util.Map;
 
@@ -8,9 +8,9 @@ import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bill.dp.dto.TravelPolicyDtoReq;
-import com.bill.dp.dto.VehiclePolicyDtoReq;
-import com.bill.dp.dto.basic.BaseDtoReq;
+import com.bill.dp.common.factory1_1.dto.TravelPolicyDtoReq;
+import com.bill.dp.common.factory1_1.dto.VehiclePolicyDtoReq;
+import com.bill.dp.dto.basic.IPolicyDto;
 import com.bill.dp.util.PojoUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,15 +27,15 @@ public class PolicySimpleFactory {
 		pojoUtil = tempPojoUtil;
     }
 	
-	public static BaseDtoReq createPolicy(String insTypeId, Map<String, ? extends Object> map) {
+	public static IPolicyDto createPolicy(String insTypeId, Map<String, ? extends Object> map) {
 		
-		Map<String, Class<? extends BaseDtoReq>> policyType = new HashedMap<String, Class<? extends BaseDtoReq>>(){{
+		Map<String, Class<? extends IPolicyDto>> policyType = new HashedMap<String, Class<? extends IPolicyDto>>(){{
 			put("I01", TravelPolicyDtoReq.class);
 			put("I02", VehiclePolicyDtoReq.class);
 			put("I03", VehiclePolicyDtoReq.class);
 		}};
 		
-		BaseDtoReq policy = pojoUtil.transMap2Bean(map, policyType.get(insTypeId));
+		IPolicyDto policy = pojoUtil.transMap2Bean(map, policyType.get(insTypeId));
 		
 //		BaseDtoReq policy = null;
 //		switch(insTypeId) {

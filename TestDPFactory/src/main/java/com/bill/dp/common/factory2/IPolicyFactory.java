@@ -2,8 +2,8 @@ package com.bill.dp.common.factory2;
 
 import java.util.Map;
 
-import com.bill.dp.dto.basic.BaseDtoReq;
+import com.bill.dp.dto.basic.IPolicyDto;
 
 public interface IPolicyFactory {
-	BaseDtoReq createPolicy(Map<String, ? extends Object> map);
+	IPolicyDto createPolicy(Map<String, ? extends Object> map);
 }

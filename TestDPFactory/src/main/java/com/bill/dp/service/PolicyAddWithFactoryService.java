@@ -3,7 +3,6 @@ package com.bill.dp.service;
 import java.util.Map;
 
 import org.apache.commons.collections4.map.HashedMap;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +11,7 @@ import org.springframework.stereotype.Service;
 import com.bill.dp.common.factory2.IPolicyFactory;
 import com.bill.dp.common.factory2.TravelPolicyFactory;
 import com.bill.dp.common.factory2.VehiclePolicyFactory;
-import com.bill.dp.dto.TravelPolicyDtoReq;
-import com.bill.dp.dto.VehiclePolicyDtoReq;
-import com.bill.dp.dto.basic.BaseDtoReq;
+import com.bill.dp.dto.basic.IPolicyDto;
 import com.bill.dp.model.basic.BaseWebReq;
 import com.bill.dp.service.basic.IBaseService;
 import com.bill.dp.util.HttpDataTransferUtil;
@@ -44,21 +41,22 @@ public class PolicyAddWithFactoryService implements IBaseService {
 			put("I03", new VehiclePolicyFactory());
 		}};
 		IPolicyFactory policyFactory = factoryType.get(insTypeId);
-		BaseDtoReq policy = policyFactory.createPolicy(baseWebReq.getTranrq());
+		IPolicyDto policy = policyFactory.createPolicy(baseWebReq.getTranrq());
 		
-//		switch(insTypeId) {
-//			case "I01":
-//				IPolicyFactory travelPolicyFactory = new TravelPolicyFactory();
-//				policy = travelPolicyFactory.createPolicy(baseWebReq.getTranrq());
-//				log.info("travelPolicy: {}", policy);
-//				break;
-//			case "I02":
-//			case "I03":
-//				IPolicyFactory vehiclePolicyFactory = new VehiclePolicyFactory();
-//				policy = vehiclePolicyFactory.createPolicy(baseWebReq.getTranrq());
-//				log.info("vehiclePolicy: {}", policy);
-//				break;
-//		}
+		switch(insTypeId) {
+			case "I01":
+				IPolicyFactory travelPolicyFactory = new TravelPolicyFactory();
+				policy = travelPolicyFactory.createPolicy(baseWebReq.getTranrq());
+				log.info("travelPolicy: {}", policy);
+				break;
+			case "I02":
+			case "I03":
+				IPolicyFactory vehiclePolicyFactory = new VehiclePolicyFactory();
+				policy = vehiclePolicyFactory.createPolicy(baseWebReq.getTranrq());
+				log.info("vehiclePolicy: {}", policy);
+				break;
+		}
+		policy.description();
 		
 		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(policy, "");
 		return httpDataTransferUtil.boxingResEntity(baseWebReq, resBodyMap, HttpStatus.OK);

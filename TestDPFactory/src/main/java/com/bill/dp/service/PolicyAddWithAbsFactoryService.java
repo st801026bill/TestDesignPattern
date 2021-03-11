@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.bill.dp.common.factory3.IPolicyFactory;
 import com.bill.dp.common.factory3.TPIPolicyFactory;
 import com.bill.dp.common.factory3.WWUPolicyFactory;
-import com.bill.dp.dto.basic.BaseDtoReq;
+import com.bill.dp.dto.basic.IPolicyDto;
 import com.bill.dp.model.basic.BaseWebReq;
 import com.bill.dp.service.basic.IBaseService;
 import com.bill.dp.util.HttpDataTransferUtil;
@@ -43,16 +43,17 @@ public class PolicyAddWithAbsFactoryService implements IBaseService {
 		IPolicyFactory companyFactory = companyFactoryType.get(company);
 		
 		//透過 INS_TYPE_ID 取得 對應的 BaseDtoReq
-		Map<String, BaseDtoReq> policyMap = new HashedMap<String, BaseDtoReq>(){{
+		Map<String, IPolicyDto> policyMap = new HashedMap<String, IPolicyDto>(){{
 			put("I01", companyFactory.createTravelPolicy(baseWebReq.getTranrq()));
 			put("I02", companyFactory.createVehiclePolicy(baseWebReq.getTranrq()));
 			put("I03", companyFactory.createVehiclePolicy(baseWebReq.getTranrq()));
 		}};
 		
-		BaseDtoReq req = policyMap.get(insTypeId);
-		log.info("req: {}", req);
+		IPolicyDto policy = policyMap.get(insTypeId);
+		policy.description();
+		log.info("req: {}", policy);
 			
-		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(req, "");
+		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(policy, "");
 		
 		return httpDataTransferUtil.boxingResEntity(baseWebReq, resBodyMap, HttpStatus.OK);
 	}

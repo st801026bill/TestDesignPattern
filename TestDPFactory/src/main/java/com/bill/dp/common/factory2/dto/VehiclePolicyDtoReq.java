@@ -1,6 +1,6 @@
-package com.bill.dp.dto;
+package com.bill.dp.common.factory2.dto;
 
-import com.bill.dp.dto.basic.BaseDtoReq;
+import com.bill.dp.dto.basic.IPolicyDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class WWUVehiclePolicyDtoReq implements BaseDtoReq{
+public class VehiclePolicyDtoReq implements IPolicyDto{
 		
 	@JsonProperty("INS_TYPE_ID")
 	private String insTypeId;
 	
-	@JsonProperty("COMPANY")
-	private String company;
+	@JsonProperty("DESCRIPTION")
+	private String description;
 	
 	@JsonProperty("VEHICLE_POLICY")
 	private VehiclePolicy vehiclePolicy;
@@ -34,5 +34,10 @@ public class WWUVehiclePolicyDtoReq implements BaseDtoReq{
 		
 		@JsonProperty("CAR_ID")
 		private String carId;
+	}
+
+	@Override
+	public String description() {
+		return this.description = "HI~我是車險保單!!";
 	}
 }

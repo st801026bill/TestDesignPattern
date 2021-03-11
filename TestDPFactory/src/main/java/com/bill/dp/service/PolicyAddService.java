@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.bill.dp.dto.TravelPolicyDtoReq;
-import com.bill.dp.dto.VehiclePolicyDtoReq;
-import com.bill.dp.dto.basic.BaseDtoReq;
+import com.bill.dp.dto.basic.IPolicyDto;
+import com.bill.dp.dto.basic.TravelPolicyDtoReq;
+import com.bill.dp.dto.basic.VehiclePolicyDtoReq;
 import com.bill.dp.model.basic.BaseWebReq;
 import com.bill.dp.service.basic.IBaseService;
 import com.bill.dp.util.HttpDataTransferUtil;
@@ -32,19 +32,21 @@ public class PolicyAddService implements IBaseService {
 		String insTypeId = httpDataTransferUtil.getTranrqUnderlyingType(baseWebReq, "INS_TYPE_ID", String.class);
 		log.info("insTypeId: {}", insTypeId);
 		
-		BaseDtoReq req = null;
+		IPolicyDto policy = null;
 		
 		switch(insTypeId) {
 			case "I01": 
-				req = pojoUtil.transMap2Bean(baseWebReq.getTranrq(), TravelPolicyDtoReq.class);
+				policy = pojoUtil.transMap2Bean(baseWebReq.getTranrq(), TravelPolicyDtoReq.class);
 				break;
 			case "I02":
 			case "I03":
-				req = pojoUtil.transMap2Bean(baseWebReq.getTranrq(), VehiclePolicyDtoReq.class);
+				policy = pojoUtil.transMap2Bean(baseWebReq.getTranrq(), VehiclePolicyDtoReq.class);
 				break;
 		}
-		log.info(req.toString());
-		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(req, "");
+		policy.description();
+		log.info(policy.toString());
+		
+		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(policy, "");
 		
 		return httpDataTransferUtil.boxingResEntity(baseWebReq, resBodyMap, HttpStatus.OK);
 	}
