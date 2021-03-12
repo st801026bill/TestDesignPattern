@@ -1,4 +1,4 @@
-package com.bill.dp.common.factory2;
+package com.bill.dp.common.factory2.factory;
 
 import java.util.Map;
 

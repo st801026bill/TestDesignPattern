@@ -41,12 +41,12 @@ public class TSBVehiclePolicyDtoReq implements IPolicyDto{
 	}
 	
 	@Override
-	public String description() {
-		return this.description = "HI~我是台新 - 車險保單!!";
+	public void prepare() {
+		this.description = "HI~我是台新 - 車險保單!!";
 	}
 
 	@Override
 	public void save() {
-		log.info("台新 - 車險保單 已新增");
+		this.description += "(新增成功)";
 	}
 }

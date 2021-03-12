@@ -36,7 +36,12 @@ public class TravelPolicyDtoReq implements IPolicyDto{
 	}
 
 	@Override
-	public String description() {
-		return this.description = "HI~我是旅遊險保單!!";
+	public void prepare() {
+		this.description = "HI~我是旅遊險保單!!";
+	}
+	
+	@Override
+	public void save() {
+		this.description += "(新增成功)";
 	}
 }

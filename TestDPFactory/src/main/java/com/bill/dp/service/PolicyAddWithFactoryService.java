@@ -8,10 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.bill.dp.common.factory2.IPolicyFactory;
-import com.bill.dp.common.factory2.TravelPolicyFactory;
-import com.bill.dp.common.factory2.VehiclePolicyFactory;
 import com.bill.dp.common.factory2.dto.IPolicyDto;
+import com.bill.dp.common.factory2.factory.IPolicyFactory;
+import com.bill.dp.common.factory2.factory.TravelPolicyFactory;
+import com.bill.dp.common.factory2.factory.VehiclePolicyFactory;
+import com.bill.dp.common.factory2.store.WWUPolicyStore;
 import com.bill.dp.model.basic.BaseWebReq;
 import com.bill.dp.service.basic.IBaseService;
 import com.bill.dp.util.HttpDataTransferUtil;
@@ -29,9 +30,7 @@ public class PolicyAddWithFactoryService implements IBaseService {
 	HttpDataTransferUtil httpDataTransferUtil;
 	
 	@Autowired
-	private TravelPolicyFactory travelPolicyFactory;
-	@Autowired
-	private VehiclePolicyFactory vehiclePolicyFactory;
+	WWUPolicyStore store;
 	
 	@Override
 	public ResponseEntity<?> process(BaseWebReq baseWebReq) {
@@ -39,15 +38,7 @@ public class PolicyAddWithFactoryService implements IBaseService {
 		String insTypeId = httpDataTransferUtil.getTranrqUnderlyingType(baseWebReq, "INS_TYPE_ID", String.class);
 		log.info("insTypeId: {}", insTypeId);
 
-		//透過Factory取得Policy
-		Map<String, IPolicyFactory> factoryType = new HashedMap<String, IPolicyFactory>(){{
-			put("I01", travelPolicyFactory);
-			put("I02", vehiclePolicyFactory);
-			put("I03", vehiclePolicyFactory);
-		}};
-		IPolicyFactory policyFactory = factoryType.get(insTypeId);
-		IPolicyDto policy = policyFactory.createPolicy(baseWebReq.getTranrq());
-		policy.description();
+		IPolicyDto policy = store.buyPolicy(insTypeId, baseWebReq);
 		
 		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(policy, "");
 		return httpDataTransferUtil.boxingResEntity(baseWebReq, resBodyMap, HttpStatus.OK);

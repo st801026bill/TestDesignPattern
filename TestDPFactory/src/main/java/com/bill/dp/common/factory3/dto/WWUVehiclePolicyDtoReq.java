@@ -41,8 +41,8 @@ public class WWUVehiclePolicyDtoReq implements IPolicyDto{
 	}
 	
 	@Override
-	public String description() {
-		return this.description = "HI~我是旺旺 - 車險保單!!";
+	public void prepare() {
+		this.description = "HI~我是旺旺 - 車險保單!!";
 	}
 
 	@Override

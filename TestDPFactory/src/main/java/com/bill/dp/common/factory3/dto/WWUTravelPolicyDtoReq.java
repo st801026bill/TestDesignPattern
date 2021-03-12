@@ -41,8 +41,8 @@ public class WWUTravelPolicyDtoReq implements IPolicyDto{
 	}
 
 	@Override
-	public String description() {
-		return this.description = "HI~我是旺旺 - 旅遊險保單!!";
+	public void prepare() {
+		this.description = "HI~我是旺旺 - 旅遊險保單!!";
 	}
 
 	@Override
