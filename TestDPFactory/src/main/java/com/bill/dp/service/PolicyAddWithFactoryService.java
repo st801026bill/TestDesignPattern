@@ -9,10 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.bill.dp.common.factory2.dto.IPolicyDto;
 import com.bill.dp.common.factory2.factory.IPolicyFactory;
 import com.bill.dp.common.factory2.factory.TravelPolicyFactory;
 import com.bill.dp.common.factory2.factory.VehiclePolicyFactory;
+import com.bill.dp.common.factory2.product.IPolicyDto;
 import com.bill.dp.common.factory2.store.WWUPolicyStore;
 import com.bill.dp.model.basic.BaseWebReq;
 import com.bill.dp.service.basic.IBaseService;

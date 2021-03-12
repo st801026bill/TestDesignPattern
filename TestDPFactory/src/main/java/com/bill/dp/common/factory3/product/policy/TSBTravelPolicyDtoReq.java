@@ -1,5 +1,6 @@
-package com.bill.dp.common.factory3.dto;
+package com.bill.dp.common.factory3.product.policy;
 
+import com.bill.dp.common.factory3.factory.IPolicyFactory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -11,7 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class WWUTravelPolicyDtoReq implements IPolicyDto{
+public class TSBTravelPolicyDtoReq implements IPolicyDto{
+	
+	private IPolicyFactory factory;
 	
 	@JsonProperty("INS_TYPE_ID")
 	private String insTypeId;
@@ -39,14 +42,19 @@ public class WWUTravelPolicyDtoReq implements IPolicyDto{
 		@JsonProperty("TRAVEL_COUNTRY")
 		private String travelCountry;
 	}
-
+	
 	@Override
 	public void prepare() {
-		this.description = "HI~我是旺旺 - 旅遊險保單!!";
+		this.description = "HI~我是台新 - 旅遊險保單!!";
 	}
 
 	@Override
 	public void save() {
 		this.description += "(新增成功)";
+	}
+
+	@Override
+	public void createFactory(IPolicyFactory factory) {
+		this.factory = factory;
 	}
 }

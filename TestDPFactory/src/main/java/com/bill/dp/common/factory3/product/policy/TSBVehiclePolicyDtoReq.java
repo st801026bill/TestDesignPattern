@@ -1,5 +1,6 @@
-package com.bill.dp.common.factory3.dto;
+package com.bill.dp.common.factory3.product.policy;
 
+import com.bill.dp.common.factory3.factory.IPolicyFactory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -11,7 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class TSBTravelPolicyDtoReq implements IPolicyDto{
+public class TSBVehiclePolicyDtoReq implements IPolicyDto{
+		
+	private IPolicyFactory factory;
 	
 	@JsonProperty("INS_TYPE_ID")
 	private String insTypeId;
@@ -22,13 +25,13 @@ public class TSBTravelPolicyDtoReq implements IPolicyDto{
 	@JsonProperty("DESCRIPTION")
 	private String description;
 	
-	@JsonProperty("TRAVEL_POLICY")
-	private TravelPolicy travelPolicy;
+	@JsonProperty("VEHICLE_POLICY")
+	private VehiclePolicy vehiclePolicy;
 	
 	@Data
 	@NoArgsConstructor
 	@AllArgsConstructor
-	public static class TravelPolicy {
+	public static class VehiclePolicy {
 		
 		@JsonProperty("APPLY_NO")
 		private String applyNo;
@@ -36,17 +39,22 @@ public class TSBTravelPolicyDtoReq implements IPolicyDto{
 		@JsonProperty("NAME")
 		private String name;
 		
-		@JsonProperty("TRAVEL_COUNTRY")
-		private String travelCountry;
+		@JsonProperty("CAR_ID")
+		private String carId;
 	}
 	
 	@Override
 	public void prepare() {
-		this.description = "HI~我是台新 - 旅遊險保單!!";
+		this.description = "HI~我是台新 - 車險保單!!";
 	}
 
 	@Override
 	public void save() {
 		this.description += "(新增成功)";
+	}
+	
+	@Override
+	public void createFactory(IPolicyFactory factory) {
+		this.factory = factory;
 	}
 }

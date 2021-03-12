@@ -1,4 +1,4 @@
-package com.bill.dp.common.factory2.dto;
+package com.bill.dp.common.factory2.product;
 
 import com.bill.dp.dto.basic.IBaseDto;
 

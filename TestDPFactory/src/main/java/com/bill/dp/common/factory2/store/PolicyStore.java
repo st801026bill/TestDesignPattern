@@ -1,6 +1,6 @@
 package com.bill.dp.common.factory2.store;
 
-import com.bill.dp.common.factory2.dto.IPolicyDto;
+import com.bill.dp.common.factory2.product.IPolicyDto;
 import com.bill.dp.model.basic.BaseWebReq;
 
 public abstract class PolicyStore {

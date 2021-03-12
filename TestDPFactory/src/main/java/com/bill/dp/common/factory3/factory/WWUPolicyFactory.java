@@ -5,9 +5,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bill.dp.common.factory3.dto.IPolicyDto;
-import com.bill.dp.common.factory3.dto.WWUTravelPolicyDtoReq;
-import com.bill.dp.common.factory3.dto.WWUVehiclePolicyDtoReq;
+import com.bill.dp.common.factory3.product.compulsory.Compulsory_21;
+import com.bill.dp.common.factory3.product.compulsory.Compulsory_47;
+import com.bill.dp.common.factory3.product.compulsory.Compulsory_49;
+import com.bill.dp.common.factory3.product.compulsory.ICompulsory;
+import com.bill.dp.common.factory3.product.policy.IPolicyDto;
+import com.bill.dp.common.factory3.product.policy.WWUTravelPolicyDtoReq;
+import com.bill.dp.common.factory3.product.policy.WWUVehiclePolicyDtoReq;
 import com.bill.dp.util.PojoUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,12 +29,24 @@ public class WWUPolicyFactory implements IPolicyFactory {
 	}
 
 	@Override
-	public IPolicyDto createVehiclePolicy(Map<String, ? extends Object> map) {
-		return pojoUtil.transMap2Bean(map, WWUVehiclePolicyDtoReq.class);
+	public IPolicyDto createVehiclePolicy(IPolicyFactory factory, Map<String, ? extends Object> map) {
+		IPolicyDto policy =  pojoUtil.transMap2Bean(map, WWUVehiclePolicyDtoReq.class);
+		policy.createFactory(factory);
+		return policy;
 	}
 
 	@Override
-	public IPolicyDto createMobilePolicy(Map<String, ? extends Object> map) {
-		return null;
+	public ICompulsory createCompulsory_21() {
+		return new Compulsory_21();
+	}
+
+	@Override
+	public ICompulsory createCompulsory_47() {
+		return new Compulsory_47();
+	}
+
+	@Override
+	public ICompulsory createCompulsory_49() {
+		return new Compulsory_49();
 	}
 }
