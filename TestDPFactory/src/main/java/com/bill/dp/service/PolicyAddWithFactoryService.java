@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.commons.collections4.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class PolicyAddWithFactoryService implements IBaseService {
 	HttpDataTransferUtil httpDataTransferUtil;
 	
 	@Autowired
+	@Qualifier("PolicyStore")
 	WWUPolicyStore store;
 	
 	@Override

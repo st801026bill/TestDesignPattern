@@ -11,8 +11,9 @@ import com.bill.dp.common.factory2.factory.IPolicyFactory;
 import com.bill.dp.common.factory2.factory.TravelPolicyFactory;
 import com.bill.dp.common.factory2.factory.VehiclePolicyFactory;
 import com.bill.dp.model.basic.BaseWebReq;
+import com.fasterxml.jackson.core.sym.Name;
 
-@Component
+@Component("PolicyStore")
 public class WWUPolicyStore extends PolicyStore {
 	
 	@Autowired

@@ -47,6 +47,6 @@ public class WWUTravelPolicyDtoReq implements IPolicyDto{
 
 	@Override
 	public void save() {
-		log.info("旺旺 - 旅遊險保單 已新增");
+		this.description += "(新增成功)";
 	}
 }
