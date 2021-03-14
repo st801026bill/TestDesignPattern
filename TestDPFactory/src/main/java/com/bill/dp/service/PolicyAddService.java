@@ -32,8 +32,8 @@ public class PolicyAddService implements IBaseService {
 		String insTypeId = httpDataTransferUtil.getTranrqUnderlyingType(baseWebReq, "INS_TYPE_ID", String.class);
 		log.info("insTypeId: {}", insTypeId);
 		
+		//建立 IPolicyDto 實體物件
 		IPolicyDto policy = null;
-		
 		switch(insTypeId) {
 			case "I01": 
 				policy = pojoUtil.transMap2Bean(baseWebReq.getTranrq(), TravelPolicyDtoReq.class);
@@ -43,11 +43,11 @@ public class PolicyAddService implements IBaseService {
 				policy = pojoUtil.transMap2Bean(baseWebReq.getTranrq(), VehiclePolicyDtoReq.class);
 				break;
 		}
-		policy.description();
-		log.info(policy.toString());
+		
+		policy.prepare();
+		policy.save();
 		
 		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(policy, "");
-		
 		return httpDataTransferUtil.boxingResEntity(baseWebReq, resBodyMap, HttpStatus.OK);
 	}
 }

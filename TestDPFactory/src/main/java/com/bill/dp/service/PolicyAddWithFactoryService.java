@@ -41,6 +41,7 @@ public class PolicyAddWithFactoryService implements IBaseService {
 		log.info("insTypeId: {}", insTypeId);
 
 		IPolicyDto policy = store.buyPolicy(insTypeId, baseWebReq);
+		log.info("req: {}", policy);
 		
 		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(policy, "");
 		return httpDataTransferUtil.boxingResEntity(baseWebReq, resBodyMap, HttpStatus.OK);

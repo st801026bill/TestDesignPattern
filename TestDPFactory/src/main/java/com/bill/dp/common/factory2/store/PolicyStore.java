@@ -7,12 +7,8 @@ public abstract class PolicyStore {
 	
 	public IPolicyDto buyPolicy(String insTypeId, BaseWebReq baseWebReq) {
 		IPolicyDto policy = createPolicy(insTypeId, baseWebReq);
-		
-		//設定Description
 		policy.prepare();
-		//save policy
 		policy.save();
-		
 		return policy;
 	}
 	

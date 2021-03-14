@@ -47,8 +47,8 @@ public class PolicyAddWithAbsFactoryService implements IBaseService {
 			put("TSB", TSBPolicyStore);
 		}};
 		PolicyStore store = storeType.get(company);
-		IPolicyDto policy = store.buyPolicy(insTypeId, baseWebReq);
 		
+		IPolicyDto policy = store.buyPolicy(insTypeId, baseWebReq);
 		log.info("req: {}", policy);
 	
 		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(policy, "");
