@@ -40,8 +40,8 @@ public class PolicyAddWithFactoryService implements IBaseService {
 		String insTypeId = httpDataTransferUtil.getTranrqUnderlyingType(baseWebReq, "INS_TYPE_ID", String.class);
 		log.info("insTypeId: {}", insTypeId);
 
+		//購買保單
 		IPolicyDto policy = store.buyPolicy(insTypeId, baseWebReq);
-		log.info("req: {}", policy);
 		
 		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(policy, "");
 		return httpDataTransferUtil.boxingResEntity(baseWebReq, resBodyMap, HttpStatus.OK);

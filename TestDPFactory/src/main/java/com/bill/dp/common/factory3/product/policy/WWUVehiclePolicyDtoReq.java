@@ -2,6 +2,7 @@ package com.bill.dp.common.factory3.product.policy;
 
 import com.bill.dp.common.factory3.factory.IPolicyFactory;
 import com.bill.dp.common.factory3.product.compulsory.ICompulsory;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @EqualsAndHashCode(callSuper=false)
 public class WWUVehiclePolicyDtoReq implements IPolicyDto {
 	
+	@JsonIgnore
 	private IPolicyFactory factory;
 	
 	@JsonProperty("INS_TYPE_ID")

@@ -22,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class PolicyAddWithAbsFactoryService implements IBaseService {
-
 	@Autowired
 	private PojoUtil pojoUtil;
 	@Autowired
@@ -32,16 +31,14 @@ public class PolicyAddWithAbsFactoryService implements IBaseService {
 	private WWUPolicyStore WWUPolicyStore;
 	@Autowired
 	private TSBPolicyStore TSBPolicyStore;
-	
 	@Override
 	public ResponseEntity<?> process(BaseWebReq baseWebReq) {
-		
 		String company 	 = httpDataTransferUtil.getTranrqUnderlyingType(baseWebReq, "COMPANY", String.class);
 		String insTypeId = httpDataTransferUtil.getTranrqUnderlyingType(baseWebReq, "INS_TYPE_ID", String.class);
 		log.info("company: {}, insTypeId: {}", company, insTypeId);
 		
 		/* 取得保單商店 */
-		//透過 COMPANY 取得 對應的 FACTORY (產品族)
+		//透過 COMPANY 取得 對應的 Store
 		Map<String, PolicyStore> storeType = new HashedMap<String, PolicyStore>(){{
 			put("WWU", WWUPolicyStore);
 			put("TSB", TSBPolicyStore);
@@ -49,7 +46,6 @@ public class PolicyAddWithAbsFactoryService implements IBaseService {
 		PolicyStore store = storeType.get(company);
 		
 		IPolicyDto policy = store.buyPolicy(insTypeId, baseWebReq);
-		log.info("req: {}", policy);
 	
 		Map<String,Object> resBodyMap = pojoUtil.transBean2Map(policy, "");
 		return httpDataTransferUtil.boxingResEntity(baseWebReq, resBodyMap, HttpStatus.OK);

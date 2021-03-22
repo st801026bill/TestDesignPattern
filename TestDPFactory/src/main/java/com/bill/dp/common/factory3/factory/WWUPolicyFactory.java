@@ -22,12 +22,11 @@ public class WWUPolicyFactory implements IPolicyFactory {
 	
 	@Autowired
 	private PojoUtil pojoUtil;
-
+	
 	@Override
 	public IPolicyDto createTravelPolicy(Map<String, ? extends Object> map) {
 		return pojoUtil.transMap2Bean(map, WWUTravelPolicyDtoReq.class);
 	}
-
 	@Override
 	public IPolicyDto createVehiclePolicy(IPolicyFactory factory, Map<String, ? extends Object> map) {
 		IPolicyDto policy =  pojoUtil.transMap2Bean(map, WWUVehiclePolicyDtoReq.class);
@@ -39,12 +38,10 @@ public class WWUPolicyFactory implements IPolicyFactory {
 	public ICompulsory createCompulsory_21() {
 		return new Compulsory_21();
 	}
-
 	@Override
 	public ICompulsory createCompulsory_47() {
 		return new Compulsory_47();
 	}
-
 	@Override
 	public ICompulsory createCompulsory_49() {
 		return new Compulsory_49();

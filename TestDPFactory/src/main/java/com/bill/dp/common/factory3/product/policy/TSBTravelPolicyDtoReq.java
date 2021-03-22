@@ -1,6 +1,7 @@
 package com.bill.dp.common.factory3.product.policy;
 
 import com.bill.dp.common.factory3.factory.IPolicyFactory;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @EqualsAndHashCode(callSuper=false)
 public class TSBTravelPolicyDtoReq implements IPolicyDto{
 	
+	@JsonIgnore
 	private IPolicyFactory factory;
 	
 	@JsonProperty("INS_TYPE_ID")

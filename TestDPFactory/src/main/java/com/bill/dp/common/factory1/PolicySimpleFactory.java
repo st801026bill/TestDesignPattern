@@ -34,19 +34,7 @@ public class PolicySimpleFactory {
 			put("I02", VehiclePolicyDtoReq.class);
 			put("I03", VehiclePolicyDtoReq.class);
 		}};
-		
 		IPolicyDto policy = pojoUtil.transMap2Bean(map, policyType.get(insTypeId));
-		
-//		BaseDtoReq policy = null;
-//		switch(insTypeId) {
-//			case "I01": 
-//				policy = pojoUtil.transMap2Bean(map, TravelPolicyDtoReq.class);
-//				break;
-//			case "I02":
-//			case "I03":
-//				policy = pojoUtil.transMap2Bean(map, VehiclePolicyDtoReq.class);
-//				break;
-//		}
 		
 		log.info("createPolicy: {}", policy.toString());
 		return policy;
